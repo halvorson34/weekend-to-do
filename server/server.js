@@ -14,6 +14,8 @@ const pool = new Pool({
   idelTimeoutMills: 3000,
 });
 
+const listRouter = require("./routes/list.router");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
