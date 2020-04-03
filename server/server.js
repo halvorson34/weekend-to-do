@@ -19,6 +19,6 @@ app.use(bodyParser.json());
 
 app.use(express.static("server/public"));
 
-app.listen(Port, () => {
+app.listen(PORT, () => {
   console.log("Running server on PORT:", PORT);
 });
