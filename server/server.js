@@ -1,25 +1,16 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const pg = require("pg");
-
 const app = express();
-const Pool = pg.Pool;
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 
-const pool = new Pool({
-  database: "weekend-to-do-app",
-  host: "localhost",
-  port: 5432,
-  max: 10,
-  idelTimeoutMills: 3000,
-});
-
+//ROUTES
 const listRouter = require("./routes/list.router");
 
+app.use(express.static("server/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static("server/public"));
+app.use("/list", listRouter);
 
 app.listen(PORT, () => {
   console.log("Running server on PORT:", PORT);
