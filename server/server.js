@@ -13,5 +13,5 @@ app.use(bodyParser.json());
 app.use("/list", listRouter);
 
 app.listen(PORT, () => {
-  console.log("Running server on PORT:", PORT);
+  console.log(`Running server on port: ${PORT}`);
 });
