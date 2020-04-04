@@ -11,9 +11,27 @@
 
     <title>Weekend To Do List</title>
   </head>
-  <header>
-    <h1>Weekend To-Do List App</h1>
-  </header>
-
-  <body></body>
+  <body>
+    <header>
+      <h1>Weekend To-Do List App</h1>
+    </header>
+    <h2>Add to the To-Do's!</h2>
+    <div class="inputBtnClick">
+      <input type="text" class="todoInput" placeholder="what to do" />
+      <button class="js-btn-add">Add Task!</button>
+    </div>
+    <div>
+      <h2>What To-Do:</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Complete</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody class="taskList"></tbody>
+      </table>
+    </div>
+  </body>
 </html>
