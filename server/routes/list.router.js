@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const listRouter = express.Router();
 const pool = require("../modules/pool");
 
 listRouter.get("/", (req, res) => {
@@ -35,4 +35,4 @@ listRouter.post("/", (req, res) => {
     });
 });
 
-module.exports = router;
+module.exports = listRouter;
