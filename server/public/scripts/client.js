@@ -34,7 +34,7 @@ function setupClickListeners() {
 
     $.ajax({
       method: "POST",
-      url: "list",
+      url: "/list",
       data: taskToSend,
     })
       .then(function (response) {
@@ -94,16 +94,16 @@ function renderTasks(taskArray) {
   $(".taskList").empty();
 
   for (let task of taskArray) {
-    let taskCompleteButton = `<button class="js-btn-taskComplete" data-id="${list.id}">Complete</button>`;
-    if (list.complete === true) {
-      taskCompleteButton = `<button class="js-btn-taskComplete hide" data-id="${list.id}">Complete</button>`;
+    let taskCompleteButton = `<button class="js-btn-taskComplete" data-id="${task.id}">Complete</button>`;
+    if (task.complete === true) {
+      taskCompleteButton = `<button class="js-btn-taskComplete hide" data-id="${task.id}">Complete</button>`;
     }
     $(".taskList").append(`
         <tr>
             <td>${task.task}</td>
             <td>${task.complete}</td>
             <td>${taskCompleteButton}</td>
-            <td><button class="js-btn-delete" data-id="${list.id}">Delete</button></td>
+            <td><button class="js-btn-delete" data-id="${task.id}">Delete</button></td>
         </tr>
         `);
   }

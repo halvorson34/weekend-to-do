@@ -35,4 +35,21 @@ listRouter.post("/", (req, res) => {
     });
 });
 
+listRouter.put("/:id", (req, res) => {
+  const itemId = req.params.id;
+  const newTaskData = req.body;
+  const queryText = `UPDATE "list" SET "complete" = $1 WHERE "id" = $2;`;
+
+  pool
+    .query(queryText, [newTaskData.complete, itemID])
+    .then((responseDb) => {
+      console.log(responseFromDb);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(`Error updating list: ${err}`);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = listRouter;
