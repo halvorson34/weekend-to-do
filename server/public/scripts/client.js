@@ -10,24 +10,24 @@ $(document).ready(function () {
 
 function clickTaskComplete() {
   console.log("Task Complete Clicked");
-  $(".taskList").on("click", ".js-btn-taskComplete", function (event) {
+  $("#taskList").on("click", ".js-btn-taskComplete", function (event) {
     console.log("In task complete button click");
     const taskUpdateId = event.target.dataset.id;
     console.log(`Task to complete id: ${taskUpdateId}`);
     const taskToBeCompleted = {
-      taskCompleted: "Y",
+      complete: "Y",
     };
     updateCompleted(taskUpdateId, taskToBeCompleted);
   });
 }
 
 function setupClickListeners() {
-  $(".js-btn-add").on("click", function () {
+  $("#js-btn-add").on("click", function () {
     console.log("in addButton on click");
 
     let taskToSend = {
-      task: $(".todoInput").val(),
-      complete: $(".completeInput").val(),
+      task: $("#todoInput").val(),
+      complete: $("#completeInput").val(),
     };
 
     console.log(taskToSend);
@@ -45,8 +45,8 @@ function setupClickListeners() {
         console.log(response);
       });
 
-    $(".todoInput").val("");
-    $(".completeInput").val("");
+    $("#todoInput").val("");
+    $("#completeInput").val("");
 
     saveTask(taskToSend);
   });
@@ -91,17 +91,16 @@ function saveTask(newTask) {
 }
 
 function renderTasks(taskArray) {
-  $(".taskList").empty();
+  $("#taskList").empty();
 
   for (let task of taskArray) {
     let taskCompleteButton = `<button class="js-btn-taskComplete" data-id="${task.id}">Complete</button>`;
     if (task.complete === true) {
       taskCompleteButton = `<button class="js-btn-taskComplete hide" data-id="${task.id}">Complete</button>`;
     }
-    $(".taskList").append(`
+    $("#taskList").append(`
         <tr>
             <td>${task.task}</td>
-            <td>${task.complete}</td>
             <td>${taskCompleteButton}</td>
             <td><button class="js-btn-delete" data-id="${task.id}">Delete</button></td>
         </tr>

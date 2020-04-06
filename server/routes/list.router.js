@@ -41,8 +41,8 @@ listRouter.put("/:id", (req, res) => {
   const queryText = `UPDATE "list" SET "complete" = $1 WHERE "id" = $2;`;
 
   pool
-    .query(queryText, [newTaskData.complete, itemID])
-    .then((responseDb) => {
+    .query(queryText, [newTaskData.complete, itemId])
+    .then((responseFromDb) => {
       console.log(responseFromDb);
       res.sendStatus(200);
     })
