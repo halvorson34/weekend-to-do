@@ -52,4 +52,19 @@ listRouter.put("/:id", (req, res) => {
     });
 });
 
+listRouter.delete("/:id", (req, res) => {
+  const itemId = req.params.id;
+  const queryText = `DELETE FROM "list" WHERE "id" = $1;`;
+
+  pool
+    .query(queryText, [itemId])
+    .then((responseFromDb) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log("Error deleting task:", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = listRouter;

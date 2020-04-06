@@ -22,6 +22,7 @@ function clickTaskComplete() {
 }
 
 function setupClickListeners() {
+  $("#taskList").on("click", ".js-btn-delete", clickDelete);
   $("#js-btn-add").on("click", function () {
     console.log("in addButton on click");
 
@@ -52,6 +53,14 @@ function setupClickListeners() {
   });
 }
 
+function clickDelete(event) {
+  console.log("In click delete");
+
+  const itemId = event.target.dataset.id;
+
+  deleteTask(itemId);
+}
+
 function getTasks() {
   console.log("in getTasks");
 
@@ -66,6 +75,20 @@ function getTasks() {
     })
     .catch(function (error) {
       console.log("Error in GET", error);
+    });
+}
+
+function deleteTask(id) {
+  $.ajax({
+    method: "DELETE",
+    url: `/list/${id}`,
+  })
+    .then((response) => {
+      console.log("DELETE", response);
+      getTasks();
+    })
+    .catch((err) => {
+      console.log("ERROR with delete", err);
     });
 }
 
@@ -103,7 +126,7 @@ function renderTasks(taskArray) {
             <td>${task.task}</td>
             <td>${taskCompleteButton}</td>
             <td><button class="js-btn-delete" data-id="${task.id}">Delete</button></td>
-        </tr>
+            </tr>
         `);
   }
 }
